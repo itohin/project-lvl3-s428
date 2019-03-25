@@ -13,7 +13,6 @@
 <body>
     <div class="container">
         @include ('partials.nav')
-
     </div>
 
 </body>
