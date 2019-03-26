@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Domain;
+use Validator;
+use Illuminate\Http\Request;
 
 class DomainController extends Controller
 {
@@ -18,9 +20,20 @@ class DomainController extends Controller
         return view('show', compact('domain'));
     }
 
-    public function store()
+    public function store(Request $request)
     {
-        //store domain
-        //redirect /domains/{id}
+        $validator = Validator::make($request->all(), [
+            'domain' => 'required|max:255',
+        ]);
+
+        if ($validator->fails()) {
+            $errors = $validator->errors()->all();
+            return view('home', compact('errors'));
+        }
+
+        $name = $request->input('domain');
+        $domain = Domain::create(['name' => $name]);
+
+        return redirect("/domains/{$domain->id}");
     }
 }
