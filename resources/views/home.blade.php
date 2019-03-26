@@ -11,15 +11,20 @@
     <title>Page Analizer</title>
 </head>
 <body>
+    @include ('partials.nav')
+
     <div class="container">
-        @include ('partials.nav')
 
         <div class="jumbotron">
-            <h1 class="display-4">Hello, world!</h1>
-            <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+            <h1 class="display-4">Page Analizer</h1>
+            <p class="lead">Please enter url you wont to analize</p>
             <hr class="my-4">
-            <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-            <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+            <form action="/domain" method="post">
+                <input type="text" id="domain" name="domain" class="form-control mb-3" placeholder="Url" required>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Analize</button>
+            </form>
+
+
         </div>
     </div>
 
