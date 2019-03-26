@@ -1,32 +1,15 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+@extends ('layouts.app')
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-    <title>Page Analizer</title>
-</head>
-<body>
-    @include ('partials.nav')
-
-    <div class="container">
-
-        <div class="jumbotron">
-            <h1 class="display-4">Page Analizer</h1>
-            <p class="lead">Please enter url you wont to analize</p>
-            <hr class="my-4">
-            <form action="/domain" method="post">
-                <input type="text" id="domain" name="domain" class="form-control mb-3" placeholder="Url" required>
-                <button class="btn btn-lg btn-primary btn-block" type="submit">Analize</button>
-            </form>
+@section ('content')
+    <div class="jumbotron">
+        <h1 class="display-4">Page Analizer</h1>
+        <p class="lead">Please enter url you wont to analize</p>
+        <hr class="my-4">
+        <form action="/domains" method="post">
+            <input type="text" id="domain" name="domain" class="form-control mb-3" placeholder="Url" required>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Analize</button>
+        </form>
 
 
-        </div>
     </div>
-
-</body>
-</html>
+@endsection
