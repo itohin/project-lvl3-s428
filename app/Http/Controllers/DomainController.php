@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\Domain;
+
 class DomainController extends Controller
 {
-    protected $fillable = ['name'];
-
     public function index()
     {
         return view('home');
