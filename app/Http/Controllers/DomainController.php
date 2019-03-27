@@ -11,7 +11,7 @@ class DomainController extends Controller
 {
     public function index()
     {
-        $domains = DB::table('domains')->paginate(3);
+        $domains = Domain::paginate(5);
         return view('index', compact('domains'));
     }
 
