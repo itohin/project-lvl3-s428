@@ -16,13 +16,20 @@ class DomainsTest extends TestCase
         $response->assertResponseStatus(200);
     }
 
+    public function testDomainsPage()
+    {
+        factory('App\Models\Domain', 5)->create();
+
+        $response = $this->get('/domains');
+        $response->assertResponseStatus(200);
+    }
+
     public function testStoreDomain()
     {
-        $url = 'http://domain.com';
-        $domain = Domain::create(['name' => $url]);
+        $domain = factory('App\Models\Domain')->create();
 
         $this->post('/domains', $domain->toArray());
-        $this->seeInDatabase('domains', ['name' => $url]);
+        $this->seeInDatabase('domains', ['name' => $domain->name]);
     }
 
     public function testShowDomain()

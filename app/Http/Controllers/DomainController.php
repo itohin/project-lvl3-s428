@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Domain;
+use Illuminate\Support\Facades\DB;
 use Validator;
 use Illuminate\Http\Request;
 
@@ -10,7 +11,8 @@ class DomainController extends Controller
 {
     public function index()
     {
-        return view('home');
+        $domains = DB::table('domains')->paginate(3);
+        return view('index', compact('domains'));
     }
 
     public function show($id)

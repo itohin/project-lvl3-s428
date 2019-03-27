@@ -1,6 +1,10 @@
 <?php
 
-$router->get('/', [
+$router->get('/', ['as' => 'home', function () {
+    return view('home');
+}]);
+
+$router->get('/domains', [
     'as' => 'domains.index', 'uses' => 'DomainController@index'
 ]);
 
