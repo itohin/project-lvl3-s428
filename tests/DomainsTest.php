@@ -30,7 +30,7 @@ class DomainsTest extends TestCase
         $url = 'http://domain.com';
         $domain = Domain::create(['name' => $url]);
 
-        $response = $this->get("/domains/{$domain->id}");
+        $response = $this->get(route('domains.show', ['id' => $domain->id]));
         $response->assertResponseStatus(200);
     }
 }

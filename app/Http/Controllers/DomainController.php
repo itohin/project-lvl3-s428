@@ -34,6 +34,6 @@ class DomainController extends Controller
         $name = $request->input('domain');
         $domain = Domain::create(['name' => $name]);
 
-        return redirect("/domains/{$domain->id}");
+        return redirect()->route('domains.show', ['id' => $domain->id]);
     }
 }
