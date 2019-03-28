@@ -6,16 +6,16 @@
         <tr>
             <th scope="col">#</th>
             <th scope="col">Name</th>
-            <th scope="col">Created</th>
-            <th scope="col">Updated</th>
+            <th scope="col">Status Code</th>
+            <th scope="col">Content Length</th>
         </tr>
         </thead>
         <tbody>
         <tr>
             <th scope="row">{{ $domain->id }}</th>
             <td>{{ $domain->name }}</td>
-            <td>{{ $domain->created_at }}</td>
-            <td>{{ $domain->updated_at }}</td>
+            <td>{{ $domain->code }}</td>
+            <td>{{ $domain->length }}</td>
         </tr>
         </tbody>
     </table>
