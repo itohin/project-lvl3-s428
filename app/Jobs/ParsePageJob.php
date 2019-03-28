@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use DiDom\Document;
 use GuzzleHttp\Client;
 
 class ParsePageJob extends Job
@@ -44,6 +45,17 @@ class ParsePageJob extends Job
             'body' => $body,
             'length' => $contentLength
         ];
+
+        $document = new Document($body);
+
+        $header = $document->find('h1');
+        $data['header'] = (count($header) > 0) ? $header[0]->text() : null;
+
+        $keywords = $document->find('meta[name=keywords]');
+        $data['keywords'] = (count($keywords) > 0) ? $keywords[0]->attr('content') : null;
+
+        $description = $document->find('meta[name=description]');
+        $data['description'] = (count($description) > 0) ? $description[0]->attr('content') : null;
 
         return $data;
     }

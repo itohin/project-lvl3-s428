@@ -4,19 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Jobs\ParsePageJob;
 use App\Models\Domain;
-use GuzzleHttp\Client;
 use Validator;
 use Illuminate\Http\Request;
 
 class DomainController extends Controller
 {
-    protected $client;
-
-    public function __construct(Client $client)
-    {
-        $this->client = $client;
-    }
-
     public function index()
     {
         $domains = Domain::paginate(5);

@@ -10,6 +10,9 @@ class Domain extends Model
         'name',
         'code',
         'body',
-        'length'
+        'length',
+        'header',
+        'keywords',
+        'description'
     ];
 }
