@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\ParsePageJob;
 use App\Models\Domain;
 use GuzzleHttp\Client;
-use GuzzleHttp\Exception\RequestException;
-use GuzzleHttp\Exception\ClientException;
 use Validator;
 use Illuminate\Http\Request;
 
@@ -42,34 +41,11 @@ class DomainController extends Controller
             return view('home', compact('errors'));
         }
 
-        $domain = $request->input('domain');
-        $data = $this->getDomainData($domain);
+        $name = $request->input('domain');
+        $domain = Domain::create(['name' => $name]);
 
-        $domain = Domain::create($data);
+        dispatch(new ParsePageJob($domain));
 
         return redirect()->route('domains.show', ['id' => $domain->id]);
-    }
-
-    public function getDomainData($domain)
-    {
-        $response = $this->client->request('GET', $domain);
-
-        $code = $response->getStatusCode();
-        $type = $response->getHeader('content-type')[0];
-        $body = $response->getBody()->getContents();
-
-        $contentLength = ($response->getHeader('content-length')) ?
-            $response->getHeader('content-length')[0] :
-            $contentLength = strlen($body);
-
-        $data = [
-            'name' => $domain,
-            'code' => $code,
-            'type' => $type,
-            'body' => $body,
-            'length' => $contentLength
-        ];
-
-        return $data;
     }
 }

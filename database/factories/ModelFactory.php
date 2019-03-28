@@ -20,9 +20,6 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 
 $factory->define(App\Models\Domain::class, function ($faker) {
     return [
-        'name' => $faker->url,
-        'code' => $faker->randomNumber(),
-        'body' => $faker->text($maxNbChars = 200),
-        'length' => $faker->randomNumber(),
+        'name' => $faker->url
     ];
 });
