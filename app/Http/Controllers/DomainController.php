@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Jobs\ParsePageJob;
 use App\Models\Domain;
+use SM\StateMachine\StateMachine;
 use Validator;
 use Illuminate\Http\Request;
 

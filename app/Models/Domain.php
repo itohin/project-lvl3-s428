@@ -15,4 +15,16 @@ class Domain extends Model
         'keywords',
         'description'
     ];
+
+    protected $state = 'init';
+
+    public function setState($state)
+    {
+        $this->state = $state;
+    }
+
+    public function getState()
+    {
+        return $this->state;
+    }
 }
