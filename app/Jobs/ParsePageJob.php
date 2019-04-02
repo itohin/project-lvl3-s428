@@ -30,6 +30,7 @@ class ParsePageJob extends Job
                 $request->complete();
                 break;
             case Request::FAILED:
+                $this->domain->update($data);
                 info($data['code']);
                 break;
         }
@@ -44,7 +45,7 @@ class ParsePageJob extends Job
 
             $code = $response->getStatusCode();
             $type = $response->getHeader('content-type')[0];
-            $body = $response->getBody()->getContents();
+            $body = mb_convert_encoding($response->getBody()->getContents(), 'UTF-8');
 
             $contentLength = ($response->getHeader('content-length')) ?
                 $response->getHeader('content-length')[0] :
